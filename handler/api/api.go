@@ -3,13 +3,13 @@ package api
 import (
 	"net/http"
 
-	goapi "github.com/micro/go-api"
-	"github.com/micro/go-api/handler"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/go-micro/selector"
-	api "github.com/micro/micro/api/proto"
-	"github.com/micro/util/go/lib/ctx"
+	goapi "github.com/jinbanglin/go-api"
+	"github.com/jinbanglin/go-api/handler"
+	"github.com/jinbanglin/go-micro/client"
+	"github.com/jinbanglin/go-micro/errors"
+	"github.com/jinbanglin/go-micro/selector"
+	api "github.com/jinbanglin/micro/api/proto"
+	"github.com/jinbanglin/util/go/lib/ctx"
 )
 
 type apiHandler struct {

@@ -9,9 +9,8 @@ import (
 	"sync"
 
 	"github.com/gorilla/handlers"
-	"github.com/micro/go-log"
-
-	"golang.org/x/crypto/acme/autocert"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-api/server/acme/autocert"
 )
 
 type Server interface {
@@ -74,7 +73,7 @@ func (s *server) Start() error {
 		return err
 	}
 
-	log.Logf("Listening on %s", l.Addr().String())
+	log.Infof("Listening on %s", l.Addr().String())
 
 	s.mtx.Lock()
 	s.address = l.Addr().String()

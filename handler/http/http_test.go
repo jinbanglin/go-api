@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/micro/go-api/handler"
-	"github.com/micro/go-api/router"
-	"github.com/micro/go-micro/cmd"
-	"github.com/micro/go-micro/registry"
-	rmock "github.com/micro/go-micro/registry/mock"
+	"github.com/jinbanglin/go-api/handler"
+	"github.com/jinbanglin/go-api/router"
+	"github.com/jinbanglin/go-micro/cmd"
+	"github.com/jinbanglin/go-micro/registry"
+	rmock "github.com/jinbanglin/go-micro/registry/mock"
 )
 
 func testHttp(t *testing.T, path, service string) {

@@ -8,14 +8,14 @@ import (
 	"strings"
 
 	"github.com/joncalhoun/qson"
-	"github.com/micro/go-api"
-	"github.com/micro/go-api/handler"
-	proto "github.com/micro/go-api/internal/proto"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/selector"
-	"github.com/micro/util/go/lib/ctx"
+	"github.com/jinbanglin/go-api"
+	"github.com/jinbanglin/go-api/handler"
+	"github.com/jinbanglin/go-api/internal/proto"
+	"github.com/jinbanglin/go-micro/client"
+	"github.com/jinbanglin/go-micro/errors"
+	"github.com/jinbanglin/go-micro/registry"
+	"github.com/jinbanglin/go-micro/selector"
+	"github.com/jinbanglin/util/go/lib/ctx"
 )
 
 const (
@@ -23,8 +23,9 @@ const (
 )
 
 type rpcHandler struct {
-	opts handler.Options
-	s    *api.Service
+	opts        handler.Options
+	s           *api.Service
+	querySource map[string][]byte //add by jinbanglin
 }
 
 // strategy is a hack for selection
@@ -39,6 +40,13 @@ func (h *rpcHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var service *api.Service
 
+	//add by jinbanglin
+	if h.querySource != nil {
+		if v, ok := h.querySource[r.URL.Path]; ok {
+			w.Write(v)
+			return
+		}
+	}
 	if h.s != nil {
 		// we were given the service
 		service = h.s
@@ -188,10 +196,11 @@ func (rh *rpcHandler) String() string {
 	return "rpc"
 }
 
-func NewHandler(opts ...handler.Option) handler.Handler {
+func NewHandler(querySource map[string][]byte, opts ...handler.Option) handler.Handler {
 	options := handler.NewOptions(opts...)
 	return &rpcHandler{
-		opts: options,
+		opts:        options,
+		querySource: querySource,
 	}
 }
 

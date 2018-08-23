@@ -17,7 +17,7 @@ The API handler is the default handler. It serves any HTTP requests and forwards
 
 - Content-Type: Any
 - Body: Any
-- Forward Format: [api.Request](https://github.com/micro/go-api/blob/master/proto/api.proto#L11)/[api.Response](https://github.com/micro/go-api/blob/master/proto/api.proto#L21)
+- Forward Format: [api.Request](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L11)/[api.Response](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L21)
 - Path: `/[service]/[method]`
 - Resolver: Path is used to resolve service and method
 
@@ -49,7 +49,7 @@ The event handler serves HTTP and forwards the request as a message over a messa
 
 - Content-Type: Any
 - Body: Any
-- Forward Format: Request is formatted as [go-api/proto.Event](https://github.com/micro/go-api/blob/master/proto/api.proto#L28L39) 
+- Forward Format: Request is formatted as [go-api/proto.Event](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L28L39) 
 - Path: `/[topic]/[event]`
 - Resolver: Path is used to resolve topic and event name
 

@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/micro/go-api/handler"
-	"github.com/micro/go-log"
-	"github.com/micro/go-micro/broker"
+	"github.com/jinbanglin/go-api/handler"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-micro/broker"
 )
 
 const (
@@ -134,7 +134,7 @@ func (c *conn) writeLoop() {
 	}()
 
 	if err != nil {
-		log.Log(err.Error())
+		log.Info(err.Error())
 		return
 	}
 
@@ -207,7 +207,7 @@ func (b *brokerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	ws, err := b.u.Upgrade(w, r, nil)
 	if err != nil {
-		log.Log(err.Error())
+		log.Info(err.Error())
 		return
 	}
 

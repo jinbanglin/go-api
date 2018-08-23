@@ -5,11 +5,32 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/server"
+	"github.com/jinbanglin/go-micro/registry"
+	"github.com/jinbanglin/go-micro/server"
 )
 
+
+const (
+	// Default defines the default handler
+	Default Handler = "meta"
+	// serves api.Request and api.Response
+	Api Handler = "api"
+	// serves the async api.Event handler
+	Event Handler = "event"
+	// forwards as http request
+	Http Handler = "http"
+	// proxies a http request
+	Proxy Handler = "proxy"
+	// services an RPC request/response
+	Rpc Handler = "rpc"
+	// serves the web proxy handler
+	Web Handler = "web"
+)
+
+// Handler defines the type of handler uses by the micro api
+type Handler =string
 // Endpoint is a mapping between an RPC method and HTTP endpoint
+
 type Endpoint struct {
 	// RPC Method e.g. Greeter.Hello
 	Name string

@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/micro/go-api/handler"
-	"github.com/micro/util/go/lib/ctx"
+	"github.com/jinbanglin/go-api/handler"
+	"github.com/jinbanglin/util/go/lib/ctx"
 )
 
 type event struct {
