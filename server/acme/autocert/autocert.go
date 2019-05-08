@@ -55,7 +55,7 @@ func AcceptTOS(tosURL string) bool { return true }
 
 // HostPolicy specifies which host names the Manager is allowed to respond to.
 // It returns a non-nil error if the host should be rejected.
-// The returned error is accessible via tls.Conn.Handshake and its callers.
+// The returned error is accessible via tls.conn.Handshake and its callers.
 // See Manager's HostPolicy field and GetCertificate method docs for more details.
 type HostPolicy func(ctx context.Context, host string) error
 

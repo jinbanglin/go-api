@@ -16,7 +16,7 @@ import (
 )
 
 // NewListener returns a net.Listener that listens on the standard TLS
-// port (443) on all interfaces and returns *tls.Conn connections with
+// port (443) on all interfaces and returns *tls.conn connections with
 // LetsEncrypt certificates for the provided domain or domains.
 //
 // It enables one-line HTTPS servers:
@@ -41,7 +41,7 @@ import (
 // should only be used with servers that support HTTP/2.
 //
 // The returned Listener also enables TCP keep-alives on the accepted
-// connections. The returned *tls.Conn are returned before their TLS
+// connections. The returned *tls.conn are returned before their TLS
 // handshake has completed.
 func NewListener(domains ...string) net.Listener {
 	m := &Manager{
@@ -61,13 +61,13 @@ func NewListener(domains ...string) net.Listener {
 }
 
 // Listener listens on the standard TLS port (443) on all interfaces
-// and returns a net.Listener returning *tls.Conn connections.
+// and returns a net.Listener returning *tls.conn connections.
 //
 // The returned listener uses a *tls.Config that enables HTTP/2, and
 // should only be used with servers that support HTTP/2.
 //
 // The returned Listener also enables TCP keep-alives on the accepted
-// connections. The returned *tls.Conn are returned before their TLS
+// connections. The returned *tls.conn are returned before their TLS
 // handshake has completed.
 //
 // Unlike NewListener, it is the caller's responsibility to initialize
@@ -104,7 +104,7 @@ func (ln *listener) Accept() (net.Conn, error) {
 
 	// Because Listener is a convenience function, help out with
 	// this too.  This is not possible for the caller to set once
-	// we return a *tcp.Conn wrapping an inaccessible net.Conn.
+	// we return a *tcp.conn wrapping an inaccessible net.conn.
 	// If callers don't want this, they can do things the manual
 	// way and tweak as needed. But this is what net/http does
 	// itself, so copy that. If net/http changes, we can change
